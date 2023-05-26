@@ -4,11 +4,22 @@ output "project_id" {
 }
 
 output "gke_cluster_name" {
-  value       = google_container_cluster.primary.name
+  value       = module.gke.name
   description = "GKE Cluster Name"
 }
 
 output "gke_cluster_host" {
-  value       = google_container_cluster.primary.endpoint
+  value       = "https://${module.gke.endpoint}"
   description = "GKE Cluster Host"
 }
+
+output "gke_cluster_location" {
+  value = module.gke.location
+  description = "Cluster Location"
+}
+
+output "gke_cluster_ca_cert" {
+  value = module.gke.ca_certificate
+  description = "Cluster CA Certificate"
+} 
+

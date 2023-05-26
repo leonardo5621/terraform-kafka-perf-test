@@ -37,5 +37,5 @@ resource "kubernetes_deployment" "consumer" {
       }
     }
   }
-  depends_on = [ kubectl_manifest.topic ]
+  depends_on = [ kubernetes_job.job ]
 }

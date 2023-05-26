@@ -7,6 +7,12 @@ resource "kubectl_manifest" "kafka" {
     namespace: application
   spec:
     kafka:
+      readinessProbe:
+        initialDelaySeconds: 20
+        timeoutSeconds: 5
+      livenessProbe:
+        initialDelaySeconds: 20
+        timeoutSeconds: 5
       version: 3.4.0
       replicas: ${var.kafka_replicas}
       listeners:
@@ -38,9 +44,18 @@ resource "kubectl_manifest" "kafka" {
         type: persistent-claim
         size: 1Gi
         deleteClaim: false
+      readinessProbe:
+        initialDelaySeconds: 20
+        timeoutSeconds: 5
+      livenessProbe:
+        initialDelaySeconds: 20
+        timeoutSeconds: 5
     entityOperator:
       topicOperator: {}
       userOperator: {}
+    kafkaExporter:
+      topicRegex: ".*"
+      groupRegex: ".*"
   YAML
   depends_on = [helm_release.strimzi, kubernetes_namespace.application]
 }

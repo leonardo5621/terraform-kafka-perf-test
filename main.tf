@@ -7,7 +7,7 @@ terraform {
 
     helm = {
       source = "hashicorp/helm"
-      version = "2.4.1"
+      version = "2.8.0"
     }
 
     kubectl = {
@@ -22,29 +22,31 @@ terraform {
   }
 }
 
-provider "kubernetes" {
-  config_path = "~/.kube/config"
-  config_context = "broker"
-}
+# provider "kubernetes" {
+#   config_path = "~/.kube/config"
+#   config_context = var.kube_context
+# }
 
-provider "helm" {
-  kubernetes {
-    config_path = "~/.kube/config"
-    config_context = "broker"
-  }
-}
+# provider "helm" {
+#   kubernetes {
+#     config_path = "~/.kube/config"
+#     config_context = var.kube_context
+#   }
+# }
 
-provider "kubectl" {
-  config_path = "~/.kube/config"
-  config_context = "broker"
-}
+# provider "kubectl" {
+#   config_path = "~/.kube/config"
+#   config_context = var.kube_context
+# }
 
-provider "google" {
-  project = var.project_id
-  region = var.region
-}
+# provider "google" {
+#   project = var.project_id
+#   region = var.region
+# }
 
-module "gke-cluster" {
+data "google_client_config" "default" {}
+
+module "gke_cluster" {
   source = "./modules/k8s-cluster"
   project_id = var.project_id
   region = var.region
@@ -52,9 +54,33 @@ module "gke-cluster" {
   nodes_count = 4
 }
 
+provider "kubernetes" {
+  host                   = module.gke_cluster.gke_cluster_host
+  token                  = data.google_client_config.default.access_token
+  cluster_ca_certificate = base64decode(module.gke_cluster.gke_cluster_ca_cert)
+}
+
+provider "helm" {
+  kubernetes {
+    host                   = module.gke_cluster.gke_cluster_host
+    token                  = data.google_client_config.default.access_token
+    cluster_ca_certificate = base64decode(module.gke_cluster.gke_cluster_ca_cert)
+  }
+}
+
+provider "kubectl" {
+  host                   = module.gke_cluster.gke_cluster_host
+  token                  = data.google_client_config.default.access_token
+  cluster_ca_certificate = base64decode(module.gke_cluster.gke_cluster_ca_cert)
+}
+
 module "kafka-cluster-perf-test" {
   source = "./modules/kafka-cluster-perf-test"
   kafka_replicas = 2
   topic_name = "messages"
-  depends_on = [ module.gke-cluster ]
+  depends_on = [ module.gke_cluster ]
+}
+
+module "cluster-monitoring" {
+  source = "./modules/kafka-monitoring"
 }
