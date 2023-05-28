@@ -30,5 +30,7 @@ This module provides the possibility to have a prometheus-based monitoring of th
 
 - The creation of a `watch` namespace
 - The deployment of a [prometheus-operator](https://github.com/prometheus-operator/prometheus-operator) at the `watch` namespace.
-
+- The creation of a `PodMonitor` for the Kafka Cluster.
+- The creation of a `PodMonitor` for the Strimzi Operator.
+- The creation of a `PodMonitor` for the Entity Operator.
 
