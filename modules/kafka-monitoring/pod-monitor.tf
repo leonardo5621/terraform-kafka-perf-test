@@ -1,6 +1,7 @@
 ## Pod monitor
 ## Source: https://github.com/AmarendraSingh88/kafka-on-kubernetes/blob/main/kafka-demo/demo3-monitoring/strimzi-pod-monitor.yaml
 resource "kubectl_manifest" "operator-monitoring" {
+  count = var.monitor_strimzi_operator ? 1 : 0
   yaml_body = <<YAML
     apiVersion: monitoring.coreos.com/v1
     kind: PodMonitor
@@ -23,6 +24,7 @@ resource "kubectl_manifest" "operator-monitoring" {
 }
 
 resource "kubectl_manifest" "entity-monitoring" {
+  count = var.monitor_entity_operator ? 1 : 0
   yaml_body = <<YAML
     apiVersion: monitoring.coreos.com/v1
     kind: PodMonitor
@@ -46,6 +48,7 @@ resource "kubectl_manifest" "entity-monitoring" {
 }
 
 resource "kubectl_manifest" "resources-monitoring" {
+  count = var.monitor_kafka_resource ? 1 : 0
   yaml_body = <<YAML
     apiVersion: monitoring.coreos.com/v1
     kind: PodMonitor

@@ -4,7 +4,7 @@ This module handles the provisioning of a Kafka Cluster using the [Strimzi](http
 consumer and producer pair. The resource creation/deletions triggered by this module are:
 
 - The deployment of the Strimzi operator at the `strimzi` namespace.
-- The deployment of a Kafka Cluster at the `application` namespace using the Strimzi Operator.
+- The deployment of a Kafka Cluster called `message-broker` at the `application` namespace using the Strimzi Operator.
 - The creation of Kafka topic using Strimzi's entities operator
 - A `producer` job that runs the [kafka-producer-perf-test](https://github.com/apache/kafka/blob/trunk/bin/kafka-producer-perf-test.sh) script.
 - A `consumer` deployment configured to run the [kafka-console-consumer](https://github.com/apache/kafka/blob/trunk/bin/kafka-console-consumer.sh) script.

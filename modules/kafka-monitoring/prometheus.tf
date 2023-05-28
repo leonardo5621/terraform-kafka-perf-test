@@ -11,6 +11,7 @@ resource "helm_release" "operator" {
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "kube-prometheus-stack"
   version = "42.0.0"
+  depends_on = [ kubernetes_namespace.watch ]
 }
 
 ## Deploying Prometheus Resource
@@ -38,8 +39,8 @@ resource "kubectl_manifest" "prometheus" {
       image: quay.io/prometheus/prometheus:v2.40.0
       podMonitorNamespaceSelector: {}
       podMonitorSelector: {}
-      scrapeInterval: 30s
-      scrapeTimeout: 5s
+      scrapeInterval: ${var.scrape_interval}
+      scrapeTimeout: ${var.scrape_timeout}
       evaluationInterval: 45s
       externalLabels:
         app: strimzi
@@ -308,4 +309,5 @@ spec:
         summary: 'No message for 10 minutes'
         description: 'There is no messages in topic {{ $labels.topic}}/partition {{ $labels.partition }} for 10 minutes'  
   YAML
+  depends_on = [ kubernetes_namespace.watch ]
 }

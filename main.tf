@@ -22,28 +22,6 @@ terraform {
   }
 }
 
-# provider "kubernetes" {
-#   config_path = "~/.kube/config"
-#   config_context = var.kube_context
-# }
-
-# provider "helm" {
-#   kubernetes {
-#     config_path = "~/.kube/config"
-#     config_context = var.kube_context
-#   }
-# }
-
-# provider "kubectl" {
-#   config_path = "~/.kube/config"
-#   config_context = var.kube_context
-# }
-
-# provider "google" {
-#   project = var.project_id
-#   region = var.region
-# }
-
 data "google_client_config" "default" {}
 
 module "gke_cluster" {

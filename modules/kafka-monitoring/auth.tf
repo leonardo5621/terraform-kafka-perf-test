@@ -35,6 +35,7 @@ resource "kubernetes_service_account" "monitoring" {
     }
     namespace = "watch"
   }
+  depends_on = [ kubernetes_namespace.watch ]
 }
 
 resource "kubernetes_cluster_role_binding" "monitoring" {
@@ -55,4 +56,5 @@ resource "kubernetes_cluster_role_binding" "monitoring" {
     name = "prometheus-server"
     namespace = "watch"
   }
+  depends_on = [ kubernetes_service_account.monitoring ]
 }
