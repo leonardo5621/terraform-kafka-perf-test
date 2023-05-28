@@ -14,5 +14,5 @@ resource "kubectl_manifest" "topic" {
       retention.ms: 7200000
       segment.bytes: 1073741824
   YAML
-  depends_on = [helm_release.strimzi, kubectl_manifest.kafka]
+  depends_on = [kubectl_manifest.kafka]
 }

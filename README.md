@@ -31,6 +31,10 @@ Before this module can be used on a project, you must ensure that the following 
 
 ## What this project has achieved
 
+With the creation of these modules, these project has been able to achieve the creation of
+a Kafka Cluster and a sample topic provisioned using the Strimzi Operator. With the possibility of creating the underlying GKE Cluster or not.
+
+The usage of all the modules bring the creation of the Kafka Cluster on the Kubernetes Cluster and it executes a performance test on it.
 ## Further Improvements
 
 ## References
