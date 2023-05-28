@@ -18,6 +18,7 @@ Before this module can be used on a project, you must ensure that the following 
 
 ### Using the three modules
 - [Terraform](https://www.terraform.io/) and [kubectl](https://kubernetes.io/docs/reference/kubectl/) tools are correctly installed.
+- Google Cloud command line tool([gcloud](https://cloud.google.com/sdk/gcloud)) is installed.
 - Have a Service Account that is able to execute the module with the Create/Update/Delete permissions over Network and GKE resources.
 - Make sure that the Compute Engine and Kubernetes Engine APIs have been enabled in the project.
 
