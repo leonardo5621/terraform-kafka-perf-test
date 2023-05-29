@@ -7,9 +7,9 @@ A message broker is a piece of software responsible for enabling the communicati
 
 The goal of this project was to create a simple way of provisioning a Kafka Cluster and executing a performance test on it. It contains three main modules:
 
-- [**k8s-cluster**](https://github.com/leonardo5621/terraform-kafka-perf-test/blob/master/modules/k8s-cluster/README.md): This Terraform module enables the provisioning of a Kubernetes Cluster on GKE.
-- [**kafka-cluster-perf-test**](https://github.com/leonardo5621/terraform-kafka-perf-test/blob/master/modules/kafka-cluster-perf-test/README.md): This module sets up a Kafka Cluster aimed towards a performance test using a basic producer and a consumer, with a Kafka UI deployment.
-- [**kafka-monitoring**](https://github.com/leonardo5621/terraform-kafka-perf-test/blob/master/modules/kafka-monitoring/README.md): This module provides the possibility to have a prometheus-based monitoring of the Kafka Cluster.
+- [**terraform-k8s-cluster**](https://github.com/leonardo5621/terraform-kafka-perf-test/blob/master/modules/terraform-k8s-cluster/README.md): This Terraform module enables the provisioning of a Kubernetes Cluster on GKE.
+- [**terraform-kafka-cluster-perf-test**](https://github.com/leonardo5621/terraform-kafka-perf-test/blob/master/modules/terraform-kafka-cluster-perf-test/README.md): This module sets up a Kafka Cluster aimed towards a performance test using a basic producer and a consumer, with a Kafka UI deployment.
+- [**terraform-kafka-monitoring**](https://github.com/leonardo5621/terraform-kafka-perf-test/blob/master/modules/terraform-kafka-monitoring/README.md): This module provides the possibility to have a prometheus-based monitoring of the Kafka Cluster.
 
 Make sure to check out the documentation of each module for more details.
 
@@ -45,6 +45,7 @@ There are also improvements that can be brought to this project, here are some o
 - Implementation of a custom dashboard with the cluster metrics.
 - Setting up alarms based on these metrics.
 - Executing performance tests from the outside of the cluster.
+- Integration of the terraform modules into an CI/CD pipeline system.
 
 ## References
 

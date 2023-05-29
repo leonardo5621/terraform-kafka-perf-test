@@ -127,7 +127,7 @@ resource "kubernetes_config_map" "kafka_metrics" {
     YAML
   
   }
-  depends_on = [ kubernetes_namespace.watch ]
+  depends_on = [ kubernetes_namespace.application ]
 }
 
 resource "kubernetes_config_map" "zoo_metrics" {
@@ -171,5 +171,5 @@ resource "kubernetes_config_map" "zoo_metrics" {
         memberType: "$3"
     YAML
   }
-  depends_on = [ kubernetes_namespace.watch ]
+  depends_on = [ kubernetes_namespace.application ]
 }

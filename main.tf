@@ -25,7 +25,7 @@ terraform {
 data "google_client_config" "default" {}
 
 module "gke_cluster" {
-  source = "./modules/k8s-cluster"
+  source = "./modules/terraform-k8s-cluster"
   project_id = var.project_id
   region = var.region
   vpc_name = "perf-test"
@@ -53,13 +53,13 @@ provider "kubectl" {
 }
 
 module "kafka-cluster-perf-test" {
-  source = "./modules/kafka-cluster-perf-test"
+  source = "./modules/terraform-kafka-cluster-perf-test"
   kafka_replicas = 2
   topic_name = "messages"
   depends_on = [ module.gke_cluster ]
 }
 
 module "cluster-monitoring" {
-  source = "./modules/kafka-monitoring"
+  source = "./modules/terraform-kafka-monitoring"
   depends_on = [ module.gke_cluster ]
 }

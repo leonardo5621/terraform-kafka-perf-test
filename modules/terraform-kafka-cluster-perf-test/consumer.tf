@@ -38,8 +38,4 @@ resource "kubernetes_deployment" "consumer" {
     }
   }
   depends_on = [kubectl_manifest.topic]
-  ## Waiting for the Kafka Cluster pods to be provisioned up and running
-  timeouts {
-    create = "10m"
-  }
 }

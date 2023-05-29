@@ -30,5 +30,9 @@ resource "kubernetes_job" "job" {
       }
     }
   }
+  ## Waiting for the Kafka Cluster pods to be provisioned up and running
+  timeouts {
+    create = "10m"
+  }
   depends_on = [kubernetes_deployment.consumer]
 }
