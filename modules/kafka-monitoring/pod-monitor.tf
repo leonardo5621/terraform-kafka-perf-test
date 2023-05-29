@@ -8,7 +8,7 @@ resource "kubectl_manifest" "operator-monitoring" {
       name: cluster-operator-metrics
       labels:
         app: strimzi
-      namespace: application
+      namespace: watch
     spec:
       selector:
         matchLabels:
@@ -31,7 +31,7 @@ resource "kubectl_manifest" "entity-monitoring" {
       name: entity-operator-metrics
       labels:
         app: strimzi
-      namespace: application
+      namespace: watch
     spec:
       selector:
         matchLabels:
@@ -47,30 +47,6 @@ resource "kubectl_manifest" "entity-monitoring" {
 
 }
 
-resource "kubectl_manifest" "entity-monitoring-svc" {
-  yaml_body = <<YAML
-  apiVersion: monitoring.coreos.com/v1
-  kind: ServiceMonitor
-  metadata:
-    name: entity-operator
-    labels:
-      app: strimzi
-    namespace: application
-  spec:
-    selector:
-      matchLabels:
-        app.kubernetes.io/name: entity-operator
-    namespaceSelector:
-        matchNames:
-          - application
-    endpoints:
-    - port: healthcheck
-      path: /metrics
-  YAML
-  depends_on = [ helm_release.operator ]
-
-}
-
 resource "kubectl_manifest" "resources-monitoring" {
   yaml_body = <<YAML
     apiVersion: monitoring.coreos.com/v1
@@ -79,7 +55,7 @@ resource "kubectl_manifest" "resources-monitoring" {
       name: kafka-resources-metrics
       labels:
         app: strimzi
-      namespace: application
+      namespace: watch
     spec:
       selector:
         matchExpressions:

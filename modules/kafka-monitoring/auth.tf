@@ -33,7 +33,7 @@ resource "kubernetes_service_account" "monitoring" {
     labels = {
       app = "strimzi"
     }
-    namespace = "application"
+    namespace = "watch"
   }
   depends_on = [ kubernetes_namespace.watch ]
 }
@@ -54,7 +54,7 @@ resource "kubernetes_cluster_role_binding" "monitoring" {
   subject {
     kind = "ServiceAccount"
     name = "prometheus-server"
-    namespace = "application"
+    namespace = "watch"
   }
   depends_on = [ kubernetes_service_account.monitoring ]
 }

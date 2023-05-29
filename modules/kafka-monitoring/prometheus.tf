@@ -9,7 +9,7 @@ resource "kubernetes_namespace" "watch" {
 
 resource "helm_release" "operator" {
   name       = "prometheus-monitoring"
-  namespace = "application"
+  namespace = "watch"
   
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "kube-prometheus-stack"
@@ -30,7 +30,7 @@ resource "kubectl_manifest" "prometheus" {
       name: prometheus
       labels:
         app: strimzi
-      namespace: application
+      namespace: watch
     spec:
       serviceAccountName: prometheus-server
       replicas: 1
@@ -42,9 +42,6 @@ resource "kubectl_manifest" "prometheus" {
           app: strimzi
       enableAdminAPI: false
       image: quay.io/prometheus/prometheus:v2.40.0
-      podMonitorNamespaceSelector:
-        matchLabels:
-          name: application
       scrapeInterval: ${var.scrape_interval}
       scrapeTimeout: ${var.scrape_timeout}
       evaluationInterval: 45s
