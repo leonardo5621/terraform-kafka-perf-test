@@ -8,7 +8,7 @@ A message broker is a piece of software responsible for enabling the communicati
 The goal of this project was to create a simple way of provisioning a Kafka Cluster and executing a performance test on it. It contains three main modules:
 
 - **k8s-cluster**: This Terraform module enables the provisioning of a Kubernetes Cluster on GKE.
-- **kafka-cluster-perf-test**: This module sets up a Kafka Cluster aimed towards a performance test using a basic producer and a consumer.
+- **kafka-cluster-perf-test**: This module sets up a Kafka Cluster aimed towards a performance test using a basic producer and a consumer, with a Kafka UI deployment.
 - **kafka-monitoring**: This module provides the possibility to have a prometheus-based monitoring of the Kafka Cluster.
 
 Make sure to check out the documentation of each module for more details.
@@ -34,8 +34,19 @@ Before this module can be used on a project, you must ensure that the following 
 With the creation of these modules, these project has been able to achieve the creation of
 a Kafka Cluster and a sample topic provisioned using the Strimzi Operator. With the possibility of creating the underlying GKE Cluster or not.
 
-The usage of all the modules bring the creation of the Kafka Cluster on the Kubernetes Cluster and it executes a performance test on it.
+The usage of all the modules bring the creation of the Kafka Cluster on the Kubernetes Cluster and it executes a performance test on it. In addition, the Kafka UI application allow us to see the exchanged messages during the test.
+
+![Screenshot from 2023-05-28 21-24-34](https://github.com/leonardo5621/terraform-kafka-perf-test/assets/30439454/83a77f53-e4a9-4c4b-8058-a11804cdd399)
+
+
+Also, there is the possibility of using the prometheus-based monitoring for exporting metrics to other platforms, such as Grafana.
 ## Further Improvements
+
+There are also improvements that can be brought to this project, here are some of them:
+
+- Implementation of a custom dashboard with the cluster metrics.
+- Setting up alarms based on these metrics.
+- Executing performance tests from the outside of the cluster.
 
 ## References
 
