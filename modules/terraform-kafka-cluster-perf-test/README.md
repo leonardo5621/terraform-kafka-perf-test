@@ -8,7 +8,14 @@ consumer and producer pair. The resource creation/deletions triggered by this mo
 - The creation of Kafka topic using Strimzi's entities operator
 - A `producer` job that runs the [kafka-producer-perf-test](https://github.com/apache/kafka/blob/trunk/bin/kafka-producer-perf-test.sh) script.
 - A `consumer` deployment configured to run the [kafka-console-consumer](https://github.com/apache/kafka/blob/trunk/bin/kafka-console-consumer.sh) script.
-- The deployment of a Kafka UI instance.
+- The deployment of a Kafka UI instance in the `application` namespace.
+
+In order to check the Kafka UI, you can run:
+
+```bash
+  kubectl port-forward svc/kafka-ui 8080:80 -n application
+```
+ And it will become available at the port 8080 at the localhost
 
 ## Usage
 

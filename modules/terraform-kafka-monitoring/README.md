@@ -8,6 +8,15 @@ The resource creation/deletions triggered are:
 - A configured prometheus instance.
 - Optional `PodMonitor` for the following resources: `strimzi` operator, the `entity` operator and the Kafka Cluster itself.
 
+In order to check the scraped Prometheus metrics, you can run:
+
+```bash
+  kubectl port-forward svc/prometheus-operated 9090:9090 -n watch
+```
+ And it will become available at the port 9090 at the localhost.
+
+ If none of the Kafka Cluster metrics are readily available, try restarting the `prometheus` or the `prometheus-monitoring-kube` pods.
+
 ## Usage
 
 Here is an example of the usage of this module:

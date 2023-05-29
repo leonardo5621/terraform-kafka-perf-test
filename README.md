@@ -28,7 +28,7 @@ Before this module can be used on a project, you must ensure that the following 
 - A valid kubernetes context.
 - A kubernetes configuration file to allow the communication with the cluster.
 
-The `.env.example` contains a sample of the necessary environment variables you must include to your environment
+The `.env.example` contains a sample of the necessary environment variables.
 
 ## What this project has achieved
 
