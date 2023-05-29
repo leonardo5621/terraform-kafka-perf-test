@@ -25,19 +25,19 @@ This module can be invoked as follows:
 
 provider "kubernetes" {
   config_path = "~/.kube/config"
-  config_context = var.kube_context
+  config_context = "kube_context"
 }
 
 provider "helm" {
   kubernetes {
     config_path = "~/.kube/config"
-    config_context = var.kube_context
+    config_context = "kube_context"
   }
 }
 
 provider "kubectl" {
   config_path = "~/.kube/config"
-  config_context = var.kube_context
+  config_context = "kube_context"
 }
 
 
@@ -63,4 +63,4 @@ module "kafka-cluster-perf-test" {
 | Name | Description |
 |------|-------------|
 | kafka\_cluster\_name | Kafka Cluster Name |
-| kafka\_cluster\_namespace | Kafka Cluster Namespac |
+| kafka\_cluster\_namespace | Kafka Cluster Namespace |

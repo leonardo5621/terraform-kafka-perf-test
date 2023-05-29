@@ -28,8 +28,8 @@ module "gke_cluster" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | project_id | Google Cloud Project ID | `string` | - | yes |
-| region | Region where the VPC and the Cluster will be provisioned | `string` | `us-east1` | no |
 | vpc_name | The name of the VPC to be created | `string` | - | yes |
+| region | Region where the VPC and the Cluster will be provisioned | `string` | `us-east1` | no |
 | ip\_cidr\_range | Subnet IP CIDR Range | `string` | `10.30.0.0/24` | no |
 | nodes\_count | Number of nodes to be created in the cluster initially | `number` | `3` | no |
 

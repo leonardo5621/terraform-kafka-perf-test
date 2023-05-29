@@ -1,6 +1,6 @@
 ## Terraform Kafka Monitoring
 
-This module is meant to enable a Prometheus-based monitoring for a Kafka Cluster created using the strimzi operator.
+This module is meant to enable a Prometheus-based monitoring of the Kafka Cluster.
 The resource creation/deletions triggered are:
 
 - The creation of the `watch` namespace where everything in this module will be deployed.
@@ -15,7 +15,7 @@ In order to check the scraped Prometheus metrics, you can run:
 ```
  And it will become available at the port 9090 at the localhost.
 
- If none of the Kafka Cluster metrics are readily available, try restarting the `prometheus` or the `prometheus-monitoring-kube` pods.
+ If none of the Kafka Cluster or operator metrics are readily available, try restarting the `prometheus` or the `prometheus-monitoring-kube` pods.
 
 ## Usage
 
@@ -44,4 +44,4 @@ module "cluster-monitoring" {
 | Name | Description |
 |------|-------------|
 | monitoring\_namespace | Namespace where the prometheus monitoring is running | 
-| prometheus\_set\_name | Name of the prometheus set created |
+| prometheus\_set\_name | Name of the prometheus instance |

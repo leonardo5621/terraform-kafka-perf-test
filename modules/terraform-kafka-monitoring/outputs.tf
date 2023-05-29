@@ -4,6 +4,6 @@ output "monitoring_namespace" {
 }
 
 output "prometheus_set_name" {
-  description = "Name of the prometheus set created"
+  description = "Name of the prometheus instance"
   value = kubectl_manifest.prometheus.name
 }
