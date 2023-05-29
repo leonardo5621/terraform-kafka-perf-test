@@ -8,7 +8,7 @@ A message broker is a piece of software responsible for enabling the communicati
 The goal of this project was to create a simple way of provisioning a Kafka Cluster and executing a performance test on it. It contains three main modules:
 
 - [**terraform-k8s-cluster**](https://github.com/leonardo5621/terraform-kafka-perf-test/blob/master/modules/terraform-k8s-cluster/README.md): This Terraform module enables the provisioning of a Kubernetes Cluster on GKE.
-- [**terraform-kafka-cluster-perf-test**](https://github.com/leonardo5621/terraform-kafka-perf-test/blob/master/modules/terraform-kafka-cluster-perf-test/README.md): This module sets up a Kafka Cluster aimed towards a performance test using a basic producer and a consumer, with a Kafka UI deployment.
+- [**terraform-kafka-cluster-perf-test**](https://github.com/leonardo5621/terraform-kafka-perf-test/blob/master/modules/terraform-kafka-cluster-perf-test/README.md): This module sets up a Kafka Cluster aimed towards a performance test using a basic producer and consumer pattern, it also includes a Kafka UI deployment to visualize the message exchange.
 - [**terraform-kafka-monitoring**](https://github.com/leonardo5621/terraform-kafka-perf-test/blob/master/modules/terraform-kafka-monitoring/README.md): This module provides the possibility to have a prometheus-based monitoring of the Kafka Cluster.
 
 Make sure to check out the documentation of each module for more details.
@@ -16,10 +16,11 @@ Make sure to check out the documentation of each module for more details.
 ## Requirements
 Before this module can be used on a project, you must ensure that the following pre-requisites are fulfilled:
 
-### Using all the modules modules
+### Using all modules
 - [Terraform](https://www.terraform.io/) and [kubectl](https://kubernetes.io/docs/reference/kubectl/) tools installed.
 - Google Cloud command line tool([gcloud](https://cloud.google.com/sdk/gcloud)) is installed.
-- Have a Service Account that is able to execute the module with the Create/Update/Delete permissions over Network and GKE resources.
+- A Google Cloud Platform project ready to be used
+- A Service Account with Create/Update/Delete permissions over Network and GKE resources.
 - Make sure that the Compute Engine and Kubernetes Engine APIs have been enabled in the project.
 
 ### Using only the Kafka Cluster creation and monitoring modules
@@ -27,12 +28,14 @@ Before this module can be used on a project, you must ensure that the following 
 - A valid kubernetes context.
 - A kubernetes configuration file to allow the communication with the cluster.
 
+The `.env.example` contains a sample of the necessary environment variables you must include to your environment
+
 ## What this project has achieved
 
 With the creation of these modules, these project has been able to achieve the creation of
 a Kafka Cluster and a sample topic provisioned using the Strimzi Operator. With the possibility of creating the underlying GKE Cluster or not.
 
-The usage of all the modules bring the creation of the Kafka Cluster on the Kubernetes Cluster and it executes a performance test on it. In addition, the Kafka UI application allow us to see the exchanged messages during the test.
+The usage of all the modules bring the creation of the Kafka Cluster on the Kubernetes Cluster, the execution of a performance test on it and a set of prometheus monitoring metrics of the cluster. In addition, the Kafka UI application allow us to see the exchanged messages during the test.
 
 ![Screenshot from 2023-05-28 21-24-34](https://github.com/leonardo5621/terraform-kafka-perf-test/assets/30439454/83a77f53-e4a9-4c4b-8058-a11804cdd399)
 
