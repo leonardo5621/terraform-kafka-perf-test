@@ -7,9 +7,9 @@ A message broker is a piece of software responsible for enabling the communicati
 
 The goal of this project was to create a simple way of provisioning a Kafka Cluster and executing a performance test on it. It contains three main modules:
 
-- **k8s-cluster**: This Terraform module enables the provisioning of a Kubernetes Cluster on GKE.
-- **kafka-cluster-perf-test**: This module sets up a Kafka Cluster aimed towards a performance test using a basic producer and a consumer, with a Kafka UI deployment.
-- **kafka-monitoring**: This module provides the possibility to have a prometheus-based monitoring of the Kafka Cluster.
+- [**k8s-cluster**](https://github.com/leonardo5621/terraform-kafka-perf-test/blob/master/modules/k8s-cluster/README.md): This Terraform module enables the provisioning of a Kubernetes Cluster on GKE.
+- [**kafka-cluster-perf-test**](https://github.com/leonardo5621/terraform-kafka-perf-test/blob/master/modules/kafka-cluster-perf-test/README.md): This module sets up a Kafka Cluster aimed towards a performance test using a basic producer and a consumer, with a Kafka UI deployment.
+- [**kafka-monitoring**](https://github.com/leonardo5621/terraform-kafka-perf-test/blob/master/modules/kafka-monitoring/README.md): This module provides the possibility to have a prometheus-based monitoring of the Kafka Cluster.
 
 Make sure to check out the documentation of each module for more details.
 
@@ -17,15 +17,13 @@ Make sure to check out the documentation of each module for more details.
 Before this module can be used on a project, you must ensure that the following pre-requisites are fulfilled:
 
 ### Using all the modules modules
-- [Terraform](https://www.terraform.io/) and [kubectl](https://kubernetes.io/docs/reference/kubectl/) tools correctly installed.
-- [Golang](https://go.dev/) installed for building the kubernetes provider plugin.
+- [Terraform](https://www.terraform.io/) and [kubectl](https://kubernetes.io/docs/reference/kubectl/) tools installed.
 - Google Cloud command line tool([gcloud](https://cloud.google.com/sdk/gcloud)) is installed.
 - Have a Service Account that is able to execute the module with the Create/Update/Delete permissions over Network and GKE resources.
 - Make sure that the Compute Engine and Kubernetes Engine APIs have been enabled in the project.
 
 ### Using only the Kafka Cluster creation and monitoring modules
 - [Terraform](https://www.terraform.io/) and [kubectl](https://kubernetes.io/docs/reference/kubectl/) tools correctly installed.
-- [Golang](https://go.dev/) installed for building the kubernetes provider plugin.
 - A valid kubernetes context.
 - A kubernetes configuration file to allow the communication with the cluster.
 

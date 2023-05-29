@@ -61,4 +61,5 @@ module "kafka-cluster-perf-test" {
 
 module "cluster-monitoring" {
   source = "./modules/kafka-monitoring"
+  depends_on = [ module.gke_cluster ]
 }

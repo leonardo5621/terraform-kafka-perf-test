@@ -24,7 +24,7 @@ module "cluster-monitoring" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| scrape_\timeout | Metrics scraping timeout value | `string` | `5s` | no |
+| scrape\_timeout | Metrics scraping timeout value | `string` | `5s` | no |
 | scrape\_interval | Metrics scraping interval | `string` | `30s` | no |
 | monitor\_strimzi\_operator | Flag to create a Pod Monitor resource for the strimzi operator | `boolean` | `true` | no |
 | monitor\_entity\_operator | Create a Pod Monitor resource for the entity operator | `boolean` | `true` | no |
