@@ -3,7 +3,7 @@
 resource "kubernetes_config_map" "kafka_metrics" {
   metadata {
     name = "kafka-metrics"
-    namespace = "watch"
+    namespace = "application"
     labels = {
       app = "strimzi"
     }
@@ -133,7 +133,7 @@ resource "kubernetes_config_map" "kafka_metrics" {
 resource "kubernetes_config_map" "zoo_metrics" {
   metadata {
     name = "zookeeper-metrics"
-    namespace = "watch"
+    namespace = "application"
     labels = {
       app = "strimzi"
     }

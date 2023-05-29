@@ -7,6 +7,12 @@ resource "kubectl_manifest" "kafka" {
     namespace: application
   spec:
     kafka:
+      metricsConfig:
+        type: jmxPrometheusExporter
+        valueFrom:
+          configMapKeyRef:
+            name: kafka-metrics
+            key: kafka-metrics-config.yml
       readinessProbe:
         initialDelaySeconds: 20
         timeoutSeconds: 5

@@ -20,11 +20,17 @@ terraform {
 resource "kubernetes_namespace" "strimzi" {
   metadata {
     name = "strimzi"
+    labels = {
+      name = "strimzi"
+    }
   }
 }
 
 resource "kubernetes_namespace" "application" {
   metadata {
     name = "application"
+    labels = {
+      name = "application"
+    }
   }
 }

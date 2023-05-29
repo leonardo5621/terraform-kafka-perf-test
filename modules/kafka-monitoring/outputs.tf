@@ -1,6 +1,6 @@
 output "monitoring_namespace" {
   description = "Namespace where the prometheus monitoring is running"
-  value = kubernetes_namespace.watch.metadata.name
+  value = kubernetes_namespace.watch.id
 }
 
 output "prometheus_set_name" {

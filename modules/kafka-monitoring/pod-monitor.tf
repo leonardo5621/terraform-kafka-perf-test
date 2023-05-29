@@ -1,7 +1,6 @@
 ## Pod monitor
 ## Source: https://github.com/AmarendraSingh88/kafka-on-kubernetes/blob/main/kafka-demo/demo3-monitoring/strimzi-pod-monitor.yaml
 resource "kubectl_manifest" "operator-monitoring" {
-  count = var.monitor_strimzi_operator ? 1 : 0
   yaml_body = <<YAML
     apiVersion: monitoring.coreos.com/v1
     kind: PodMonitor
@@ -9,6 +8,7 @@ resource "kubectl_manifest" "operator-monitoring" {
       name: cluster-operator-metrics
       labels:
         app: strimzi
+      namespace: application
     spec:
       selector:
         matchLabels:
@@ -24,7 +24,6 @@ resource "kubectl_manifest" "operator-monitoring" {
 }
 
 resource "kubectl_manifest" "entity-monitoring" {
-  count = var.monitor_entity_operator ? 1 : 0
   yaml_body = <<YAML
     apiVersion: monitoring.coreos.com/v1
     kind: PodMonitor
@@ -32,6 +31,7 @@ resource "kubectl_manifest" "entity-monitoring" {
       name: entity-operator-metrics
       labels:
         app: strimzi
+      namespace: application
     spec:
       selector:
         matchLabels:
@@ -47,8 +47,31 @@ resource "kubectl_manifest" "entity-monitoring" {
 
 }
 
+resource "kubectl_manifest" "entity-monitoring-svc" {
+  yaml_body = <<YAML
+  apiVersion: monitoring.coreos.com/v1
+  kind: ServiceMonitor
+  metadata:
+    name: entity-operator
+    labels:
+      app: strimzi
+    namespace: application
+  spec:
+    selector:
+      matchLabels:
+        app.kubernetes.io/name: entity-operator
+    namespaceSelector:
+        matchNames:
+          - application
+    endpoints:
+    - port: healthcheck
+      path: /metrics
+  YAML
+  depends_on = [ helm_release.operator ]
+
+}
+
 resource "kubectl_manifest" "resources-monitoring" {
-  count = var.monitor_kafka_resource ? 1 : 0
   yaml_body = <<YAML
     apiVersion: monitoring.coreos.com/v1
     kind: PodMonitor
@@ -56,6 +79,7 @@ resource "kubectl_manifest" "resources-monitoring" {
       name: kafka-resources-metrics
       labels:
         app: strimzi
+      namespace: application
     spec:
       selector:
         matchExpressions:
