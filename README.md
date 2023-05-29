@@ -45,9 +45,9 @@ Also, there is the possibility of using the prometheus-based monitoring for expo
 
 There are also improvements that can be brought to this project, here are some of them:
 
-- Implementation of a custom dashboard with the cluster metrics.
+- Implementation of a custom dashboard with the Kafka cluster metrics.
 - Setting up alarms based on these metrics.
-- Executing performance tests from the outside of the cluster.
+- Executing performance tests from the outside of the Kubernetes cluster.
 - Integration of the terraform modules into an CI/CD pipeline system.
 
 ## References
